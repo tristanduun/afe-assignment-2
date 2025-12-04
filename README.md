@@ -1,6 +1,7 @@
 # AFE Assignment 2
 
 ## Quick start
+
 1. `cd my-app`
 2. `npm run dev`
 3. Go to http://localhost:3000
@@ -10,27 +11,31 @@
 - Next.js
 - Must include **both** server-side and client-side components
 - Must be deployed to a public cloud (Vercel)
-- ![functional-requirements](img/functional-requirements.png)
+
+![functional-requirements](img/functional-requirements.png)
 
 ## Submission
 
 Your submission consists of 3 parts:
+
 1. A video where you demonstrate that your app fulfills the requirements.
 2. Your solution as a zip package as described below.
 3. Link to where your app is deployed.
 4. Your chosen prefix.
 
 ### Before submitting your solution, do the following:
+
 1. Delete the `node_modules` folder in the workspace root folder
 2. Add a file `participants.txt` and insert a new line for each participant with the AUID and name of each member separated by whitespace
 3. Add `participants.txt` to the root folder of your application
 4. Archive and compress you application using zip. All other formats will result in a request for resubmission.
 5. The filename should be named `<AUID_PARTICIPANT_1>-<AUID_PARTICIPANT_2>-<AUID_PARTICIPANT_3>.<ARCHIVE_COMPRESS_FORMAT>` Example: Alice with AUID `au01248` and Bob with AUID `au84210` creates a compressed archive named `au01248-au84210.zip` and uploads it to Brightspace
-		Example `participants.txt` contents:
-		`au01248 Alice
-		au84210 Bob`
+   Example `participants.txt` contents:
+   `au01248 Alice
+	au84210 Bob`
 
 # The `FitInAFart` app
+
 1. Video:
 2. Zipped solution:
 3. Link:
@@ -52,11 +57,12 @@ Your submission consists of 3 parts:
 | Get specific workout          | /program/[id] | Personal Trainer, Client      |
 
 ## Users
+
 - Manager
-	- **Email** = `33minators_boss@fitness.dk`
-	- **Password** = `asdfQWER`
-	- FirstName = `Manager`
-	- LastName = `The Boss`
+  - **Email** = `33minators_boss@fitness.dk`
+  - **Password** = `asdfQWER`
+  - FirstName = `Manager`
+  - LastName = `The Boss`
   - AccountType = `Manager`
 - Personal trainers
   - 1

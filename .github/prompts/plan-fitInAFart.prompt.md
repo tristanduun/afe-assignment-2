@@ -124,7 +124,7 @@ fitinafart/
 - [x] `lib/auth.ts` — JWT utilities
 - [x] **(is in auth.ts)** `context/AuthContext.tsx` — Auth state provider
 - [x] `app/api/auth/login/route.ts` — Login API route
-- [x]  `app/api/auth/logout/route.ts` — Logout API route
+- [x] `app/api/auth/logout/route.ts` — Logout API route
 - [x] `proxy.ts` — Route protection
 - [x] `components/forms/LoginForm.tsx` — Login form component
 - [x] **changed to login.tsx - you’re redirected by the proxy when landing**`app/page.tsx` — Login page (replace existing)
@@ -139,13 +139,13 @@ fitinafart/
 
 **Files to create (in order):**
 
-- [ ] `components/forms/ProgramForm.tsx` — Program creation form
-- [ ] `app/(protected)/new-program/page.tsx` — New program page
-- [ ] `components/forms/ExerciseForm.tsx` — Exercise creation form
-- [ ] `app/(protected)/new-exercise/page.tsx` — New exercise page
+- [x] `components/forms/ProgramForm.tsx` — Program creation form
+- [x] `app/(protected)/new-program/page.tsx` — New program page
+- [x] `components/forms/ExerciseForm.tsx` — Exercise creation form
+- [x] `app/(protected)/new-exercise/page.tsx` — New exercise page
 - [x] `app/(protected)/clients/page.tsx` — Clients list (PT only)
 - [x] `components/program/ProgramCard.tsx` — Program display card
-- [x] `components/program/ExerciseItem.tsx` — Exercise display
+- [x] `components/program/ExerciseItem.tsx` — Exercise display card
 - [x] `app/(protected)/program/page.tsx` — Programs list
 - [x] `app/(protected)/program/[id]/page.tsx` — Program details
 

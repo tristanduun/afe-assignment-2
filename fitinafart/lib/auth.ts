@@ -7,16 +7,9 @@ export interface AuthUser {
   groupId: string;
 }
 
-export async function getAuth(): Promise<AuthUser | null> {
-  const cookieStore = await cookies();
-  const jwt = cookieStore.get("jwt")?.value;
-
-  if (!jwt) {
-    return null;
-  }
-
+export function decodeJwt(token: string): AuthUser | null {
   try {
-    const payload = JSON.parse(atob(jwt.split(".")[1]));
+    const payload = JSON.parse(atob(token.split(".")[1]));
     return {
       userId: payload.UserId,
       name: payload.Name,
@@ -26,6 +19,17 @@ export async function getAuth(): Promise<AuthUser | null> {
   } catch {
     return null;
   }
+}
+
+export async function getAuth(): Promise<AuthUser | null> {
+  const cookieStore = await cookies();
+  const jwt = cookieStore.get("jwt")?.value;
+
+  if (!jwt) {
+    return null;
+  }
+
+  return decodeJwt(jwt);
 }
 
 export function isTrainer(user: AuthUser | null): boolean {

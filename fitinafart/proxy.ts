@@ -1,16 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-interface JwtPayload {
-  Role: "Manager" | "PersonalTrainer" | "Client";
-}
-
-function decodeJwt(token: string): JwtPayload | null {
-  try {
-    return JSON.parse(atob(token.split(".")[1]));
-  } catch {
-    return null;
-  }
-}
+import { decodeJwt } from "@/lib/auth";
 
 // Routes that require specific roles
 const trainerOnlyRoutes = ["/new-program", "/clients"];
@@ -34,10 +23,10 @@ export function proxy(request: NextRequest) {
 
   // Role-based access control
   if (jwt) {
-    const payload = decodeJwt(jwt);
-    if (payload) {
-      const isTrainer = payload.Role === "PersonalTrainer";
-      const isManager = payload.Role === "Manager";
+    const user = decodeJwt(jwt);
+    if (user) {
+      const isTrainer = user.role === "PersonalTrainer";
+      const isManager = user.role === "Manager";
 
       // Trainer-only routes
       const isTrainerOnlyRoute = 

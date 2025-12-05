@@ -15,8 +15,7 @@ export default async function RegisterPage() {
   const personalTrainerId = isTrainer(user) ? Number(user?.userId) : undefined;
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Register New User</h1>
+    <div className="p-6 max-w-md mx-auto">
       <RegisterForm 
         accountType={accountType} 
         personalTrainerId={personalTrainerId}

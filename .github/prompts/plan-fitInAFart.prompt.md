@@ -118,21 +118,16 @@ fitinafart/
 **Focus:** Authentication flow, shared utilities, login/register, and protected layout.
 
 **Files to create (in order):**
-| # | File | Notes |
-|---|------|-------|
-| 1 | `lib/types.ts` | Define all interfaces first (coordinate with B) |
-| 2 | `lib/api.ts` | API wrapper - B will import this |
-| 3 | `lib/auth.ts` | JWT utilities |
-| 4 | `context/AuthContext.tsx` | Auth state provider |
-| 5 | `app/api/auth/login/route.ts` | Login API route |
-| 6 | `app/api/auth/logout/route.ts` | Logout API route |
-| 7 | `middleware.ts` | Route protection |
-| 8 | `components/forms/LoginForm.tsx` | Login form component |
-| 9 | `app/page.tsx` | Login page (replace existing) |
-| 10 | `components/layout/Navbar.tsx` | Navigation component |
-| 11 | `app/(protected)/layout.tsx` | Protected routes wrapper |
-| 12 | `components/forms/RegisterForm.tsx` | Register form |
-| 13 | `app/(protected)/register/page.tsx` | Register page |
+
+- [x] `lib/types.ts` — Define all interfaces first (coordinate with B)
+- [x] `lib/api.ts` — API wrapper - B will import this
+- [x] `lib/auth.ts` — JWT utilities
+- [x] **(is in auth.ts)** `context/AuthContext.tsx` — Auth state provider
+- [x] `app/api/auth/login/route.ts` — Login API route
+- [x]  `app/api/auth/logout/route.ts` — Logout API route
+- [x] `proxy.ts` — Route protection
+- [x] `components/forms/LoginForm.tsx` — Login form component
+- [x] **changed to login.tsx - you’re redirected by the proxy when landing**`app/page.tsx` — Login page (replace existing)
 
 **Estimated time:** ~2.5 hours
 
@@ -143,17 +138,16 @@ fitinafart/
 **Focus:** All PT and Client feature pages. Wait for Person A to complete `lib/types.ts` and `lib/api.ts` first (~15min).
 
 **Files to create (in order):**
-| # | File | Notes |
-|---|------|-------|
-| 1 | `components/forms/ProgramForm.tsx` | Program creation form |
-| 2 | `app/(protected)/new-program/page.tsx` | New program page |
-| 3 | `components/forms/ExerciseForm.tsx` | Exercise creation form |
-| 4 | `app/(protected)/new-exercise/page.tsx` | New exercise page |
-| 5 | `app/(protected)/clients/page.tsx` | Clients list (PT only) |
-| 6 | `components/program/ProgramCard.tsx` | Program display card |
-| 7 | `components/program/ExerciseItem.tsx` | Exercise display |
-| 8 | `app/(protected)/program/page.tsx` | Programs list |
-| 9 | `app/(protected)/program/[id]/page.tsx` | Program details |
+
+- [ ] `components/forms/ProgramForm.tsx` — Program creation form
+- [ ] `app/(protected)/new-program/page.tsx` — New program page
+- [ ] `components/forms/ExerciseForm.tsx` — Exercise creation form
+- [ ] `app/(protected)/new-exercise/page.tsx` — New exercise page
+- [ ] `app/(protected)/clients/page.tsx` — Clients list (PT only)
+- [ ] `components/program/ProgramCard.tsx` — Program display card
+- [ ] `components/program/ExerciseItem.tsx` — Exercise display
+- [x] `app/(protected)/program/page.tsx` — Programs list
+- [x] `app/(protected)/program/[id]/page.tsx` — Program details
 
 **Estimated time:** ~2.5 hours
 

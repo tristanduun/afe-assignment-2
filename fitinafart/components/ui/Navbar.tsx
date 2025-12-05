@@ -9,10 +9,11 @@ export default async function Navbar() {
   }
 
   return (
-    <nav className="bg-gray-800 text-white p-4">
+    <nav className="bg-gray-800 text-white py-2 px-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold">
-          FitInAFart
+        <Link href="/" className="flex items-center gap-3">
+          <img src="/logo.png" alt="FitInAFart" width={113} height={88} />
+          <span className="text-2xl font-bold">FitInAFart</span>
         </Link>
 
         <div className="flex items-center gap-6">

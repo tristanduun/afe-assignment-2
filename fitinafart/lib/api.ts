@@ -81,8 +81,8 @@ export async function getTrainerWorkoutPrograms(): Promise<WorkoutProgram[]> {
   return fetchApi<WorkoutProgram[]>("/WorkoutPrograms/trainer");
 }
 
-export async function getClientWorkoutPrograms(): Promise<WorkoutProgram[]> {
-  return fetchApi<WorkoutProgram[]>("/WorkoutPrograms/client");
+export async function getClientWorkoutPrograms(clientId: number): Promise<WorkoutProgram[]> {
+  return fetchApi<WorkoutProgram[]>(`/WorkoutPrograms/client/${clientId}`);
 }
 
 export async function getWorkoutProgram(id: number): Promise<WorkoutProgram> {

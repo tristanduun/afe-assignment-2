@@ -69,7 +69,7 @@ export default function RegisterForm({ accountType, personalTrainerId }: Registe
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
-            className="border rounded px-3 py-2 w-full"
+            className="border rounded px-3 py-2 w-full bg-white text-gray-900"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -80,7 +80,7 @@ export default function RegisterForm({ accountType, personalTrainerId }: Registe
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
-            className="border rounded px-3 py-2 w-full"
+            className="border rounded px-3 py-2 w-full bg-white text-gray-900"
           />
         </div>
       </div>
@@ -93,7 +93,7 @@ export default function RegisterForm({ accountType, personalTrainerId }: Registe
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="border rounded px-3 py-2"
+          className="border rounded px-3 py-2 bg-white text-gray-900"
         />
       </div>
 
@@ -105,7 +105,7 @@ export default function RegisterForm({ accountType, personalTrainerId }: Registe
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="border rounded px-3 py-2"
+          className="border rounded px-3 py-2 bg-white text-gray-900"
         />
       </div>
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decodeJwt } from "@/lib/auth";
+import { decodeJwt, isTrainer, isManager } from "@/lib/auth";
 
 // Routes that require specific roles
 const trainerOnlyRoutes = ["/new-program", "/clients"];
@@ -26,25 +26,22 @@ export function proxy(request: NextRequest) {
   if (jwt) {
     const user = decodeJwt(jwt);
     if (user) {
-      const isTrainer = user.role === "PersonalTrainer";
-      const isManager = user.role === "Manager";
-
       // Manager-only routes
-      if (managerOnlyRoutes.some((route) => pathname.startsWith(route)) && !isManager) {
+      if (managerOnlyRoutes.some((route) => pathname.startsWith(route)) && !isManager(user)) {
         return NextResponse.redirect(new URL("/", request.url));
       }
 
       // Trainer-only routes
-      const isTrainerOnlyRoute = 
+      const trainerOnlyRoute = 
         trainerOnlyRoutes.some((route) => pathname.startsWith(route)) ||
         trainerOnlyPatterns.some((pattern) => pattern.test(pathname));
       
-      if (isTrainerOnlyRoute && !isTrainer) {
+      if (trainerOnlyRoute && !isTrainer(user)) {
         return NextResponse.redirect(new URL("/program", request.url));
       }
 
       // Manager or Trainer routes
-      if (managerOrTrainerRoutes.some((route) => pathname.startsWith(route)) && !isManager && !isTrainer) {
+      if (managerOrTrainerRoutes.some((route) => pathname.startsWith(route)) && !isManager(user) && !isTrainer(user)) {
         return NextResponse.redirect(new URL("/program", request.url));
       }
     }

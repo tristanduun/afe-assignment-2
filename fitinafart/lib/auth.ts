@@ -1,9 +1,10 @@
 import { cookies } from "next/headers";
+import { AccountType } from "@/lib/types";
 
 export interface AuthUser {
   userId: string;
   name: string;
-  role: "Manager" | "PersonalTrainer" | "Client";
+  role: AccountType;
   groupId: string;
 }
 

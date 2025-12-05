@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { LoginDto } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password } = await request.json();
+    const body: LoginDto = await request.json();
+    const { email, password } = body;
 
     if (!email || !password) {
       return NextResponse.json(

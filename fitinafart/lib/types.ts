@@ -29,10 +29,6 @@ export interface LoginDto {
   password: string;
 }
 
-export interface TokenDto {
-  jwt: string | null;
-}
-
 // ============================================
 // Exercise Types
 // ============================================
@@ -66,17 +62,6 @@ export interface CreateExerciseDto {
   time: string;
 }
 
-export interface UpdateExerciseDto {
-  exerciseId: number;
-  name?: string | null;
-  description?: string | null;
-  sets?: number | null;
-  repetitions?: number | null;
-  time?: string | null;
-  workoutProgramId?: number | null;
-  personalTrainerId?: number | null;
-}
-
 // ============================================
 // Workout Program Types
 // ============================================
@@ -96,33 +81,4 @@ export interface CreateWorkoutDto {
   description?: string | null;
   exercises?: CreateExerciseDto[] | null;
   clientId?: number | null;
-}
-
-export interface UpdateWorkoutDto {
-  workoutProgramId: number;
-  name?: string | null;
-  description?: string | null;
-  personalTrainerId: number;
-  clientId?: number | null;
-}
-
-// ============================================
-// JWT Payload Type (decoded token)
-// ============================================
-
-export interface JwtPayload {
-  sub: string; // User ID
-  email: string;
-  role: AccountType;
-  exp: number; // Expiration timestamp
-  iat: number; // Issued at timestamp
-}
-
-// ============================================
-// API Response Types
-// ============================================
-
-export interface ApiError {
-  message: string;
-  statusCode?: number;
 }

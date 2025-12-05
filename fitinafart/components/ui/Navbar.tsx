@@ -1,5 +1,7 @@
 import { getAuth, isManager, isTrainer, isClient } from "@/lib/auth";
+import { logout } from "@/lib/actions";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Navbar() {
   const user = await getAuth();
@@ -12,7 +14,7 @@ export default async function Navbar() {
     <nav className="bg-gray-800 text-white py-2 px-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <img src="/logo.png" alt="FitInAFart" width={113} height={88} />
+          <Image src="/logo.png" alt="FitInAFart" width={113} height={88} />
           <span className="text-2xl font-bold">FitInAFart</span>
         </Link>
 
@@ -42,7 +44,7 @@ export default async function Navbar() {
             {user.name} ({user.role})
           </span>
 
-          <form action="/api/logout" method="POST">
+          <form action={logout}>
             <button
               type="submit"
               className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm"

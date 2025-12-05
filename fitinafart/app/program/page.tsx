@@ -1,30 +1,14 @@
-import { cookies } from "next/headers";
+import { getTrainerWorkoutPrograms } from "@/lib/api";
 import { WorkoutProgram } from "@/lib/types";
 
-async function getWorkoutPrograms(): Promise<WorkoutProgram[]> {
-  const cookieStore = await cookies();
-  const jwt = cookieStore.get("jwt")?.value;
-
-  if (!jwt) {
-    return [];
-  }
-
-  const res = await fetch("https://assignment2.swafe.dk/api/WorkoutPrograms/trainer", {
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    return [];
-  }
-
-  return res.json();
-}
-
 export default async function ProgramPage() {
-  const programs = await getWorkoutPrograms();
+  let programs: WorkoutProgram[] = [];
+  
+  try {
+    programs = await getTrainerWorkoutPrograms();
+  } catch {
+    programs = [];
+  }
 
   return (
     <div className="p-6">

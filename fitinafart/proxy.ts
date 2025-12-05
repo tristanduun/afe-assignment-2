@@ -13,7 +13,8 @@ function decodeJwt(token: string): JwtPayload | null {
 }
 
 // Routes that require specific roles
-const trainerOnlyRoutes = ["/new-program", "/new-exercise", "/clients"];
+const trainerOnlyRoutes = ["/new-program", "/clients"];
+const trainerOnlyPatterns = [/\/program\/\d+\/add-exercise/];
 const managerOrTrainerRoutes = ["/register"];
 
 export function proxy(request: NextRequest) {
@@ -39,7 +40,11 @@ export function proxy(request: NextRequest) {
       const isManager = payload.Role === "Manager";
 
       // Trainer-only routes
-      if (trainerOnlyRoutes.some((route) => pathname.startsWith(route)) && !isTrainer) {
+      const isTrainerOnlyRoute = 
+        trainerOnlyRoutes.some((route) => pathname.startsWith(route)) ||
+        trainerOnlyPatterns.some((pattern) => pattern.test(pathname));
+      
+      if (isTrainerOnlyRoute && !isTrainer) {
         return NextResponse.redirect(new URL("/program", request.url));
       }
 

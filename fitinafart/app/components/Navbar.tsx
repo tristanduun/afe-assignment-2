@@ -1,34 +1,12 @@
-import { cookies } from "next/headers";
+import { getAuth, isManager, isTrainer, isClient } from "@/lib/auth";
 import Link from "next/link";
 
-interface JwtPayload {
-  Name: string;
-  Role: "Manager" | "PersonalTrainer" | "Client";
-  UserId: string;
-  GroupId: string;
-}
-
-function decodeJwt(token: string): JwtPayload | null {
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload;
-  } catch {
-    return null;
-  }
-}
-
 export default async function Navbar() {
-  const cookieStore = await cookies();
-  const jwt = cookieStore.get("jwt")?.value;
-  const user = jwt ? decodeJwt(jwt) : null;
+  const user = await getAuth();
 
   if (!user) {
     return null;
   }
-
-  const isManager = user.Role === "Manager";
-  const isTrainer = user.Role === "PersonalTrainer";
-  const isClient = user.Role === "Client";
 
   return (
     <nav className="bg-gray-800 text-white p-4">
@@ -39,14 +17,14 @@ export default async function Navbar() {
 
         <div className="flex items-center gap-6">
           {/* Manager & Personal Trainer */}
-          {(isManager || isTrainer) && (
+          {(isManager(user) || isTrainer(user)) && (
             <Link href="/register" className="hover:text-gray-300">
               Create Users
             </Link>
           )}
 
           {/* Personal Trainer only */}
-          {isTrainer && (
+          {isTrainer(user) && (
             <>
               <Link href="/new-program" className="hover:text-gray-300">
                 New Program
@@ -61,14 +39,14 @@ export default async function Navbar() {
           )}
 
           {/* Personal Trainer & Client */}
-          {(isTrainer || isClient) && (
+          {(isTrainer(user) || isClient(user)) && (
             <Link href="/program" className="hover:text-gray-300">
               Programs
             </Link>
           )}
 
           <span className="text-gray-400 text-sm">
-            {user.Name} ({user.Role})
+            {user.name} ({user.role})
           </span>
 
           <form action="/api/logout" method="POST">

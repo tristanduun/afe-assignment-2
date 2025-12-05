@@ -143,9 +143,9 @@ fitinafart/
 - [ ] `app/(protected)/new-program/page.tsx` — New program page
 - [ ] `components/forms/ExerciseForm.tsx` — Exercise creation form
 - [ ] `app/(protected)/new-exercise/page.tsx` — New exercise page
-- [ ] `app/(protected)/clients/page.tsx` — Clients list (PT only)
-- [ ] `components/program/ProgramCard.tsx` — Program display card
-- [ ] `components/program/ExerciseItem.tsx` — Exercise display
+- [x] `app/(protected)/clients/page.tsx` — Clients list (PT only)
+- [x] `components/program/ProgramCard.tsx` — Program display card
+- [x] `components/program/ExerciseItem.tsx` — Exercise display
 - [x] `app/(protected)/program/page.tsx` — Programs list
 - [x] `app/(protected)/program/[id]/page.tsx` — Program details
 

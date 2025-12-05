@@ -56,12 +56,12 @@ export default function RegisterForm({ accountType, personalTrainerId }: Registe
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">
-      <h2 className="text-xl font-semibold">Create New {userTypeLabel}</h2>
+      <h2 className="text-xl font-semibold text-center">Create New {userTypeLabel}</h2>
 
       {error && <p className="text-red-500">{error}</p>}
 
-      <div className="flex gap-4">
-        <div className="flex flex-col gap-2 flex-1">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-col gap-2">
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
@@ -69,10 +69,10 @@ export default function RegisterForm({ accountType, personalTrainerId }: Registe
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full"
           />
         </div>
-        <div className="flex flex-col gap-2 flex-1">
+        <div className="flex flex-col gap-2">
           <label htmlFor="lastName">Last Name</label>
           <input
             id="lastName"
@@ -80,7 +80,7 @@ export default function RegisterForm({ accountType, personalTrainerId }: Registe
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full"
           />
         </div>
       </div>

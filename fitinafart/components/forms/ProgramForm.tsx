@@ -102,7 +102,7 @@ export default function ProgramForm({ clients }: ProgramFormProps) {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
             placeholder="e.g., Full Body Workout"
           />
         </div>
@@ -116,7 +116,7 @@ export default function ProgramForm({ clients }: ProgramFormProps) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
             placeholder="Describe the workout program..."
           />
         </div>
@@ -131,7 +131,7 @@ export default function ProgramForm({ clients }: ProgramFormProps) {
             onChange={(e) =>
               setClientId(e.target.value === "" ? "" : Number(e.target.value))
             }
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
           >
             <option value="">-- No client assigned --</option>
             {clients.map((client) => (

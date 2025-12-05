@@ -19,7 +19,7 @@ export function ExerciseFields({ exercise, onUpdate, idPrefix = "" }: ExerciseFi
           id={`${idPrefix}name`}
           value={exercise.name}
           onChange={(e) => onUpdate("name", e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
           placeholder="e.g., Squats"
         />
       </div>
@@ -31,7 +31,7 @@ export function ExerciseFields({ exercise, onUpdate, idPrefix = "" }: ExerciseFi
           id={`${idPrefix}description`}
           value={exercise.description}
           onChange={(e) => onUpdate("description", e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
           placeholder="e.g., Barbell back squats"
         />
       </div>
@@ -45,7 +45,7 @@ export function ExerciseFields({ exercise, onUpdate, idPrefix = "" }: ExerciseFi
             min="1"
             value={exercise.sets}
             onChange={(e) => onUpdate("sets", e.target.value === "" ? "" : Number(e.target.value))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
             placeholder="3"
           />
         </div>
@@ -58,7 +58,7 @@ export function ExerciseFields({ exercise, onUpdate, idPrefix = "" }: ExerciseFi
             min="1"
             value={exercise.repetitions}
             onChange={(e) => onUpdate("repetitions", e.target.value === "" ? "" : Number(e.target.value))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
             placeholder="10"
           />
         </div>
@@ -71,7 +71,7 @@ export function ExerciseFields({ exercise, onUpdate, idPrefix = "" }: ExerciseFi
           id={`${idPrefix}time`}
           value={exercise.time}
           onChange={(e) => onUpdate("time", e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
           placeholder="e.g., 30 seconds"
         />
       </div>
@@ -89,7 +89,7 @@ interface ExerciseFormProps {
 // Exercise form card with remove button (used in ProgramForm)
 export default function ExerciseForm({ exercise, index, onUpdate, onRemove }: ExerciseFormProps) {
   return (
-    <div className="border border-gray-200 rounded-md p-4 bg-gray-50">
+    <div className="border border-gray-700 rounded-md p-4 bg-gray-800">
       <div className="flex items-center justify-between mb-3">
         <span className="font-medium">Exercise {index + 1}</span>
         <button

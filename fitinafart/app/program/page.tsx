@@ -1,7 +1,7 @@
 import { getTrainerWorkoutPrograms, getClientWorkoutPrograms } from "@/lib/api";
 import { getAuth, isTrainer } from "@/lib/auth";
 import { WorkoutProgram } from "@/lib/types";
-import ProgramsList from "@/app/components/ProgramsList";
+import ProgramsList from "@/components/ui/ProgramsList";
 import Link from "next/link";
 
 export default async function ProgramPage() {

@@ -1,7 +1,7 @@
 import { getTrainers } from "@/lib/api";
 import { getAuth, isManager } from "@/lib/auth";
 import { User } from "@/lib/types";
-import UserListPage from "@/app/components/UserListPage";
+import UserListPage from "@/components/ui/UserListPage";
 import { redirect } from "next/navigation";
 
 export default async function TrainersPage() {
@@ -23,7 +23,7 @@ export default async function TrainersPage() {
       title="Trainers"
       users={trainers}
       emptyMessage="No trainers found."
-      registerPath="/register?type=PersonalTrainer"
+      registerPath="/register"
       createButtonLabel="Create Trainer"
     />
   );

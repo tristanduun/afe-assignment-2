@@ -4,6 +4,7 @@ import { decodeJwt } from "@/lib/auth";
 // Routes that require specific roles
 const trainerOnlyRoutes = ["/new-program", "/clients"];
 const trainerOnlyPatterns = [/\/program\/\d+\/add-exercise/];
+const managerOnlyRoutes = ["/trainers"];
 const managerOrTrainerRoutes = ["/register"];
 
 export function proxy(request: NextRequest) {
@@ -27,6 +28,11 @@ export function proxy(request: NextRequest) {
     if (user) {
       const isTrainer = user.role === "PersonalTrainer";
       const isManager = user.role === "Manager";
+
+      // Manager-only routes
+      if (managerOnlyRoutes.some((route) => pathname.startsWith(route)) && !isManager) {
+        return NextResponse.redirect(new URL("/", request.url));
+      }
 
       // Trainer-only routes
       const isTrainerOnlyRoute = 

@@ -1,7 +1,7 @@
 import { getClients } from "@/lib/api";
 import { getAuth, isTrainer } from "@/lib/auth";
 import { User } from "@/lib/types";
-import UserListPage from "@/app/components/UserListPage";
+import UserListPage from "@/components/ui/UserListPage";
 import { redirect } from "next/navigation";
 
 export default async function ClientsPage() {
@@ -23,7 +23,7 @@ export default async function ClientsPage() {
       title="My Clients"
       users={clients}
       emptyMessage="No clients found."
-      registerPath="/register?type=Client"
+      registerPath="/register"
       createButtonLabel="Create Client"
     />
   );

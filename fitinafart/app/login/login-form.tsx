@@ -16,8 +16,11 @@ export default function LoginForm() {
     setLoading(true);
 
     try {
-      const params = new URLSearchParams({ email, password });
-      const response = await fetch(`/api/Users/login?${params}`);
+      const response = await fetch("/api/Users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
       const data = await response.json();
 
       if (!response.ok) {
@@ -28,7 +31,7 @@ export default function LoginForm() {
       // Login successful - redirect to home
       router.push("/");
       router.refresh();
-    } catch (err) {
+    } catch {
       setError("Failed to connect to server");
     } finally {
       setLoading(false);

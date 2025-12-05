@@ -1,6 +1,6 @@
 import { getWorkoutProgram } from "@/lib/api";
 import { getAuth, isTrainer } from "@/lib/auth";
-import ProgramCard from "@/app/components/ProgramCard";
+import ProgramCard from "@/components/ui/ProgramCard";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 

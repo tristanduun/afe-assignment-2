@@ -1,18 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const email = searchParams.get("email");
-  const password = searchParams.get("password");
-
-  if (!email || !password) {
-    return NextResponse.json(
-      { error: "Email and password are required" },
-      { status: 400 }
-    );
-  }
-
+export async function POST(request: NextRequest) {
   try {
+    const { email, password } = await request.json();
+
+    if (!email || !password) {
+      return NextResponse.json(
+        { error: "Email and password are required" },
+        { status: 400 }
+      );
+    }
+
     const response = await fetch("https://assignment2.swafe.dk/api/Users/login", {
       method: "POST",
       headers: {
@@ -37,7 +35,7 @@ export async function GET(request: NextRequest) {
     });
 
     return res;
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to connect to authentication service" },
       { status: 500 }

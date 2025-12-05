@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { CreateWorkoutDto, CreateExerciseDto, User } from "@/lib/types";
+import { CreateWorkoutDto, DraftExercise, User } from "@/lib/types";
+import { validateDraftExercise, draftToCreateExerciseDto, createEmptyDraftExercise } from "@/lib/exercise-utils";
 import { createWorkoutProgramClient } from "@/lib/api-client";
+import ExerciseForm from "@/components/forms/ExerciseForm";
 
 interface ProgramFormProps {
   clients: User[];
@@ -17,19 +19,16 @@ export default function ProgramForm({ clients }: ProgramFormProps) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [clientId, setClientId] = useState<number | "">("");
-  const [exercises, setExercises] = useState<CreateExerciseDto[]>([]);
+  const [exercises, setExercises] = useState<DraftExercise[]>([]);
 
   const addExercise = () => {
-    setExercises([
-      ...exercises,
-      { name: "", description: "", sets: null, repetitions: null, time: null },
-    ]);
+    setExercises([...exercises, createEmptyDraftExercise()]);
   };
 
   const updateExercise = (
     index: number,
-    field: keyof CreateExerciseDto,
-    value: string | number | null
+    field: keyof DraftExercise,
+    value: string | number | ""
   ) => {
     const updated = [...exercises];
     updated[index] = { ...updated[index], [field]: value };
@@ -40,16 +39,35 @@ export default function ProgramForm({ clients }: ProgramFormProps) {
     setExercises(exercises.filter((_, i) => i !== index));
   };
 
+  const validateAllExercises = (): string | null => {
+    for (let i = 0; i < exercises.length; i++) {
+      const missingFields = validateDraftExercise(exercises[i]);
+      if (missingFields.length > 0) {
+        return `Exercise ${i + 1}: Please fill in ${missingFields.join(", ")}`;
+      }
+    }
+    return null;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setError(null);
+    
+    if (exercises.length > 0) {
+      const validationError = validateAllExercises();
+      if (validationError) {
+        setError(validationError);
+        return;
+      }
+    }
+    
+    setIsSubmitting(true);
 
     const programData: CreateWorkoutDto = {
       name: name || null,
       description: description || null,
       clientId: clientId === "" ? null : clientId,
-      exercises: exercises.length > 0 ? exercises : null,
+      exercises: exercises.length > 0 ? exercises.map(draftToCreateExerciseDto) : null,
     };
 
     try {
@@ -146,100 +164,13 @@ export default function ProgramForm({ clients }: ProgramFormProps) {
         )}
 
         {exercises.map((exercise, index) => (
-          <div
+          <ExerciseForm
             key={index}
-            className="border border-gray-200 rounded-md p-4 space-y-3 bg-gray-50"
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-medium">Exercise {index + 1}</span>
-              <button
-                type="button"
-                onClick={() => removeExercise(index)}
-                className="text-red-500 hover:text-red-700 text-sm"
-              >
-                Remove
-              </button>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-2">
-                <label className="block text-sm font-medium mb-1">Name</label>
-                <input
-                  type="text"
-                  value={exercise.name || ""}
-                  onChange={(e) => updateExercise(index, "name", e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="e.g., Squats"
-                />
-              </div>
-
-              <div className="col-span-2">
-                <label className="block text-sm font-medium mb-1">
-                  Description
-                </label>
-                <input
-                  type="text"
-                  value={exercise.description || ""}
-                  onChange={(e) =>
-                    updateExercise(index, "description", e.target.value)
-                  }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="e.g., Barbell back squats"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-1">Sets</label>
-                <input
-                  type="number"
-                  min="1"
-                  value={exercise.sets ?? ""}
-                  onChange={(e) =>
-                    updateExercise(
-                      index,
-                      "sets",
-                      e.target.value === "" ? null : Number(e.target.value)
-                    )
-                  }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="3"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Repetitions
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  value={exercise.repetitions ?? ""}
-                  onChange={(e) =>
-                    updateExercise(
-                      index,
-                      "repetitions",
-                      e.target.value === "" ? null : Number(e.target.value)
-                    )
-                  }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="10"
-                />
-              </div>
-
-              <div className="col-span-2">
-                <label className="block text-sm font-medium mb-1">
-                  Time (optional)
-                </label>
-                <input
-                  type="text"
-                  value={exercise.time || ""}
-                  onChange={(e) => updateExercise(index, "time", e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="e.g., 30 seconds"
-                />
-              </div>
-            </div>
-          </div>
+            exercise={exercise}
+            index={index}
+            onUpdate={updateExercise}
+            onRemove={removeExercise}
+          />
         ))}
       </div>
 

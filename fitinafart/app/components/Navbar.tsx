@@ -47,17 +47,9 @@ export default async function Navbar() {
 
           {/* Personal Trainer only */}
           {isTrainer && (
-            <>
-              <Link href="/new-program" className="hover:text-gray-300">
-                New Program
-              </Link>
-              <Link href="/new-exercise" className="hover:text-gray-300">
-                New Exercise
-              </Link>
-              <Link href="/clients" className="hover:text-gray-300">
-                Clients
-              </Link>
-            </>
+            <Link href="/clients" className="hover:text-gray-300">
+              Clients
+            </Link>
           )}
 
           {/* Personal Trainer & Client */}

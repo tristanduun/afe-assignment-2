@@ -49,12 +49,21 @@ export interface Exercise {
   personalTrainerId?: number | null;
 }
 
+// Draft exercise type for form state (allows empty values during editing)
+export interface DraftExercise {
+  name: string;
+  description: string;
+  sets: number | "";
+  repetitions: number | "";
+  time: string;
+}
+
 export interface CreateExerciseDto {
-  name?: string | null;
-  description?: string | null;
-  sets?: number | null;
-  repetitions?: number | null;
-  time?: string | null;
+  name: string;
+  description: string;
+  sets: number;
+  repetitions: number;
+  time: string;
 }
 
 export interface UpdateExerciseDto {

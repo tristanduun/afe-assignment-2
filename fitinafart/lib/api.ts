@@ -73,6 +73,10 @@ export async function getClients(): Promise<User[]> {
   return fetchApi<User[]>("/Users/Clients");
 }
 
+export async function getTrainers(): Promise<User[]> {
+  return fetchApi<User[]>("/Users/Trainers");
+}
+
 // ============================================
 // Workout Programs
 // ============================================

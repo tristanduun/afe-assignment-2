@@ -17,10 +17,10 @@ export default async function Navbar() {
         </Link>
 
         <div className="flex items-center gap-6">
-          {/* Manager & Personal Trainer */}
-          {(isManager(user) || isTrainer(user)) && (
-            <Link href="/register" className="hover:text-gray-300">
-              Create Users
+          {/* Manager only */}
+          {isManager(user) && (
+            <Link href="/trainers" className="hover:text-gray-300">
+              Trainers
             </Link>
           )}
 

@@ -2,11 +2,11 @@
 
 ## Quick start
 
-1. `cd my-app`
+1. `cd fitinafart`
 2. `npm run dev`
 3. Go to http://localhost:3000
 
-## Krav
+## Requirements
 
 - Next.js
 - Must include **both** server-side and client-side components

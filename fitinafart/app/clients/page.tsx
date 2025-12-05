@@ -1,7 +1,7 @@
 import { getClients } from "@/lib/api";
 import { getAuth, isTrainer } from "@/lib/auth";
 import { User } from "@/lib/types";
-import ClientCard from "@/app/components/ClientCard";
+import UserListPage from "@/app/components/UserListPage";
 import { redirect } from "next/navigation";
 
 export default async function ClientsPage() {
@@ -19,18 +19,12 @@ export default async function ClientsPage() {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">My Clients</h1>
-
-      {clients.length === 0 ? (
-        <p className="text-gray-500">No clients found.</p>
-      ) : (
-        <div className="grid gap-4">
-          {clients.map((client) => (
-            <ClientCard key={client.userId} client={client} />
-          ))}
-        </div>
-      )}
-    </div>
+    <UserListPage
+      title="My Clients"
+      users={clients}
+      emptyMessage="No clients found."
+      registerPath="/register?type=Client"
+      createButtonLabel="Create Client"
+    />
   );
 }

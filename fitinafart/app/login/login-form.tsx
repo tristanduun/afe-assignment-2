@@ -40,6 +40,7 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-sm mx-auto p-6">
+      <img src="/logo.png" alt="FitInAFart" width={200} height={156} className="mx-auto mb-4" />
       <h1 className="text-2xl font-bold text-center">Login</h1>
 
       {error && <p className="text-red-500 text-center">{error}</p>}

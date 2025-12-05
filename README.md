@@ -1,5 +1,13 @@
 # AFE Assignment 2
 
+# The `FitInAFart` app
+
+## Chosen prefix = `33minators`
+
+## Link =  https://afe-assignment-2-git-main-ts-projects-d4fc45b2.vercel.app/?_vercel_share=WfAdEccqweoKLBWDW7iRwcowu3zZQEoi
+
+---
+
 ## Quick start
 
 1. `cd fitinafart`
